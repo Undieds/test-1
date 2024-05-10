@@ -1,5 +1,63 @@
 #include<stdio.h>
-int main (){
-    printf ("hello world!");
+//定义水下机器人结构体，包括位置、深度、速度等参数 
+typedef struct {  
+	float position_x;  //定义x轴位置 
+	float position_y;  //定义y轴位置 
+	float depth;  //定义深度 
+	float speed;  //定义速度 
+}UnderwaterRobot;
+
+//初始化水下机器人的参数 
+void initialize(UnderwaterRobot*robot){
+    robot->position_x = 0.0;
+    robot->position_y = 0.0;
+    robot->depth = 0.0;
+    robot->speed = 0.0;
+} 
+
+// 控制水下机器人航行
+void navigate(UnderwaterRobot*robot) {
+	float new_position_x, new_position_y;
+    printf("请输入水下机器人的x，y轴位置\n");
+	scanf("%f,%f", &new_position_x, &new_position_y);//输入水下机器人的x，y轴坐标 
+    printf("水下机器人的x，y轴坐标为(%.2f, %.2f)\n", new_position_x, new_position_y);
+    robot->position_x = new_position_x;
+    robot->position_y = new_position_y;
+}
+
+// 控制水下机器人深度
+void set_depth(UnderwaterRobot*robot){
+	float new_depth;
+	printf("请输入水下机器人的深度\n"); 
+    scanf("%f", &new_depth);//输入水下机器人的深度 
+    printf("水下机器人的深度为%.2f\n", new_depth);
+    robot->depth = new_depth;
+}
+
+// 控制水下机器人速度
+void set_speed(UnderwaterRobot*robot){
+	float new_speed;
+    printf("请输入水下机器人的航行速度\n");
+    
+    scanf("%f", &new_speed); 
+    printf("水下机器人的航行速度为%.2f\n", new_speed);
+    robot->speed = new_speed;
+}
+
+int main() {
+    UnderwaterRobot robot;
+
+    // 初始化水下机器人
+    initialize(&robot);
+
+    // 控制水下机器人航行到指定位置
+    navigate(&robot);
+
+    // 控制水下机器人调整深度
+    set_depth(&robot);
+
+    // 控制水下机器人调整速度
+    set_speed(&robot);
+
     return 0;
 }
